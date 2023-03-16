@@ -6,13 +6,15 @@ namespace App\Domain\User\Entity;
 
 use Cycle\Annotated\Annotation\Column;
 use Cycle\Annotated\Annotation\Entity;
+use Cycle\Annotated\Annotation\Table;
 
-#[Entity(role: 'comment', table: 'comments',)]
+#[Entity(role: 'comment', table: 'comments')]
+#[Table(columns: [
+    new Column(type: 'primary', property: 'id'),
+    new Column(type: 'string', property: 'body', nullable: true)
+])]
 class Comment implements EventEmitterInterface
 {
-    #[Column(type: 'primary')]
     public int $id;
-
-    #[Column(type: 'string', nullable: true)]
     public ?string $body = null;
 }
